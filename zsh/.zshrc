@@ -35,12 +35,15 @@ bindkey '^R' history-incremental-search-backward
 alias cz=chezmoi
 
 # Config shortcuts
+alias zshs='source ~/.zshrc'
 alias zshc='nvim ~/.zshrc'
-alias szsh='source ~/.zshrc'
+
 alias nvimc='cd ~/.config/nvim/ && nvim .'
 alias starshipc='nvim ~/.config/starship.toml'
 alias tmuxc='nvim ~/.tmux.conf'
 alias hyprc='cd ~/.config/hypr/ && nvim .'
+alias stow-arch='cd ~/.dotfiles/arch'
+alias stow-dev='cd ~/.dotfiles/dev/'
 
 eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"
