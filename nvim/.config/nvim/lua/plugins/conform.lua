@@ -6,18 +6,30 @@ return {
       formatters_by_ft = {
         lua = { 'stylua' },
         python = { 'ruff_format' },
-        --    cs = { 'csharpier' },
+        cs = { 'csharpier' },
+        css = { 'prettier' },
+        html = { 'prettier' },
+        csproj = { 'xmlformat' },
+        xml = { 'xmlformat' },
       },
       formatters = {
-        --  csharpier = {
-        --    command = vim.fn.expand('~/.dotnet/tools/csharpier'),
-        --    args = { 'format', '$FILENAME' },
-        --    stdin = false,
-        --  },
+        xmlformat = {
+          command = 'xmlformat',
+          -- args = { "--overwrite" },
+        },
+        csharpier = {
+          command = 'csharpier',
+          args = {
+            'format',
+            '--write-stdout',
+          },
+          to_stdin = true,
+        },
       },
+
       format_on_save = {
         timeout_ms = 500,
-        lsp_fallback = false,
+        lsp_fallback = true,
       },
     },
     config = function(_, opts)
