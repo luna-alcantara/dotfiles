@@ -19,20 +19,19 @@ return {
     'mason-org/mason-lspconfig.nvim',
     opts = {
       ensure_installed = {
-        'json-lsp',
-        'yaml-language-server',
-        'markdown-oxide',
+        --'json-lsp',
+        --'yaml-language-server',
+        --'markdown-oxide',
 
         'lua_ls',
         'stylua',
-        'lua-language-server',
+        --'lua-language-server',
 
         'basedpyright',
 
-        'csharpier',
-        --'omnisharp',
-        'roslyn',
-        'netcoredbg',
+        --'csharpier',
+        --'roslyn',
+        --'netcoredbg',
       },
     },
     dependencies = {
@@ -77,49 +76,6 @@ return {
         },
       })
       vim.lsp.enable('basedpyright')
-
-      -- C#
-      -- vim.lsp.config('omnisharp', {
-      --   cmd = { 'OmniSharp', '--languageserver', '--hostPID', tostring(vim.fn.getpid()) },
-      --   capabilities = capabilities,
-      --   root_dir = function(bufnr)
-      --     local path = vim.api.nvim_buf_get_name(bufnr)
-      --     return util.root_pattern('*.csproj', '*.sln', '.git')(path) or vim.fs.dirname(path)
-      --   end,
-      --   settings = {
-      --     FormattingOptions = {
-      --       EnableEditorConfigSupport = true,
-      --     },
-      --     RoslynExtensionsOptions = {
-      --       EnableAnalyzersSupport = true,
-      --       EnableImportCompletion = true,
-      --       AnalyzeOpenDocumentsOnly = false,
-      --     },
-      --     MsBuild = {
-      --       LoadProjectsOnDemand = false,
-      --     },
-      --   },
-      -- })
-      --vim.lsp.enable('omnisharp')
-      --
-
-      -- vim.api.nvim_create_autocmd('FileType', {
-      --   pattern = { 'cs', 'vb' },
-      --   callback = function(args)
-      --     if next(vim.lsp.get_clients({ bufnr = args.buf, name = 'omnisharp' })) then
-      --       return
-      --     end
-
-      --     local conf = vim.deepcopy(vim.lsp.config.omnisharp)
-      --     local root = conf.root_dir and conf.root_dir(args.buf)
-      --     if not root or root == '' then
-      --       return
-      --     end
-
-      --     conf.root_dir = root
-      --     vim.lsp.start(conf, { bufnr = args.buf })
-      --   end,
-      -- })
 
       -- Shared LSP keymaps
       vim.api.nvim_create_autocmd('LspAttach', {
