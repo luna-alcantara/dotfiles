@@ -42,7 +42,7 @@ return {
         group = augroup,
         pattern = { '*.yml', '*.yaml', '*.json' },
         callback = function(event)
-          vim.keymap.set('n', '<leader>cl', show_lint_diagnostics, {
+          vim.keymap.set('n', '<leader>cL', show_lint_diagnostics, {
             buffer = event.buf,
             desc = 'Run cfn-lint and show diagnostics',
             silent = true,

@@ -95,7 +95,7 @@ return {
             vim.lsp.buf.code_action({ only = { 'quickfix' } })
           end, opts)
 
-          vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, opts)
+          vim.keymap.set('n', '<leader>xd', vim.diagnostic.open_float, opts)
           vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, opts)
         end,
       })

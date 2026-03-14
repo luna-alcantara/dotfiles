@@ -34,11 +34,6 @@ end, { desc = 'Delete other buffers' })
 
 -- Splits
 
--- Navigate splits
-map('n', '<C-h>', '<C-w>h', { desc = 'Window left' })
-map('n', '<C-j>', '<C-w>j', { desc = 'Window down' })
-map('n', '<C-k>', '<C-w>k', { desc = 'Window up' })
-map('n', '<C-l>', '<C-w>l', { desc = 'Window right' })
 -- Create/close splits
 map('n', '<leader>wv', '<cmd>vsplit<CR>', { desc = 'Vertical split' })
 map('n', '<leader>ws', '<cmd>split<CR>', { desc = 'Horizontal split' })
