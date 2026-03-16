@@ -5,36 +5,25 @@ return {
     'nvim-treesitter/nvim-treesitter',
   },
   keys = {
-    { '<leader>ccc', '<cmd>CodeCompanionChat<CR>', desc = 'CodeCompanion Chat' },
+    { '<leader>cc', '<cmd>CodeCompanionChat Toggle<cr>', desc = 'CodeCompanion Chat Toggle' },
+    { '<leader>ci', '<cmd>CodeCompanion<cr>', desc = 'CodeCompanion Inline' },
     {
-      '<leader>cca',
-      '<cmd>CodeCompanionActions<CR>',
+      '<leader>cA',
+      '<cmd>CodeCompanionActions<cr>',
       mode = { 'n', 'v' },
       desc = 'CodeCompanion Actions',
     },
   },
   opts = {
-    chat = {
-      window = {
-        layout = 'float',
-        border = 'rounded',
-      },
-      auto_scroll = true,
-    },
-    inline = {
-      fill_char = '󰆧',
-      auto_insert = true,
+    -- NOTE: The log_level is in `opts.opts`
+    opts = {
+      log_level = 'DEBUG', -- or "TRACE"
     },
     display = {
       chat = {
-        syntax_highlighting = true,
-        floating_window = {
-          width = 0.9,
-          height = 0.8,
-          border = 'rounded',
-          relative = 'editor',
-          row = 'center',
-          col = 'center',
+        window = {
+          layout = 'vertical',
+          position = 'right',
         },
       },
     },
@@ -56,7 +45,6 @@ return {
         end,
       },
     },
-
     strategies = {
       chat = {
         adapter = 'opencode',
@@ -67,10 +55,6 @@ return {
       agent = {
         adapter = 'opencode',
       },
-    },
-
-    opts = {
-      log_level = 'DEBUG',
     },
   },
 }
