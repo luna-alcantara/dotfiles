@@ -28,6 +28,7 @@ return {
         --'lua-language-server',
 
         'basedpyright',
+        --'debugpy',
 
         --'csharpier',
         --'roslyn',

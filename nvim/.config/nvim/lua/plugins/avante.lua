@@ -12,6 +12,11 @@ return {
     },
     opts = {
       provider = 'opencode',
+      behaviour = {
+        auto_apply_diff_after_generation = false,
+        auto_set_keymaps = true,
+        minimise_diff = true,
+      },
       acp_providers = {
         opencode = {
           command = 'opencode',
@@ -27,6 +32,9 @@ return {
       },
       selector = {
         provider = 'snacks',
+      },
+      edit = {
+        auto_apply = false,
       },
     },
   },

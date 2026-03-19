@@ -53,6 +53,54 @@ return {
         },
       }
 
+      dap.configurations.python = {
+        {
+          type = 'debugpy',
+          name = 'launch - python file',
+          request = 'launch',
+          program = '${file}',
+          pythonPath = function()
+            local venv_path = os.getenv('VIRTUAL_ENV')
+            if venv_path then
+              return venv_path .. '/bin/python'
+            end
+            return vim.fn.exepath('python') or 'python'
+          end,
+        },
+        {
+          type = 'debugpy',
+          name = 'launch - python module',
+          request = 'launch',
+          module = function()
+            return vim.fn.input('Module name: ', '', 'file')
+          end,
+          pythonPath = function()
+            local venv_path = os.getenv('VIRTUAL_ENV')
+            if venv_path then
+              return venv_path .. '/bin/python'
+            end
+            return vim.fn.exepath('python') or 'python'
+          end,
+        },
+        {
+          type = 'debugpy',
+          name = 'attach - remote',
+          request = 'attach',
+          host = function()
+            return vim.fn.input('Host: ', '127.0.0.1', 'file')
+          end,
+          port = function()
+            return tonumber(vim.fn.input('Port: ', '5678', 'file'))
+          end,
+          localRoot = function()
+            return vim.fn.input('Local root: ', vim.fn.getcwd(), 'dir')
+          end,
+          remoteRoot = function()
+            return vim.fn.input('Remote root: ', '/app')
+          end,
+        },
+      }
+
       local opts = { noremap = true, silent = true }
       local map = vim.keymap.set
 
