@@ -1,41 +1,26 @@
 return {
-  {
-    'yetone/avante.nvim',
-    event = 'VeryLazy',
-    version = false,
-    build = 'make',
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-      'MunifTanjim/nui.nvim',
-      'nvim-tree/nvim-web-devicons',
-      'folke/snacks.nvim',
-    },
-    opts = {
-      provider = 'opencode',
-      behaviour = {
-        auto_apply_diff_after_generation = false,
-        auto_set_keymaps = true,
-        minimise_diff = true,
+  'yetone/avante.nvim',
+  event = 'VeryLazy',
+  lazy = false,
+  version = false,
+  opts = {
+    provider = 'opencode',
+    providers = {
+      opencode = {
+        name = 'opencode',
+        module = 'avante.providers.opencode',
+        sharing = 'acp',
       },
-      acp_providers = {
-        opencode = {
-          command = 'opencode',
-          args = { 'acp' },
-        },
-        kiro = {
-          command = 'kiro-cli',
-          args = { 'acp' },
-        },
-      },
-      input = {
-        provider = 'snacks',
-      },
-      selector = {
-        provider = 'snacks',
-      },
-      edit = {
-        auto_apply = false,
+      kiro = {
+        name = 'kiro-cli',
+        module = 'avante.providers.kiro',
+        sharing = 'acp',
       },
     },
+  },
+  dependencies = {
+    'nvim-lua/plenary.nvim',
+    'MunifTanjim/nui.nvim',
+    'nvim-tree/nvim-web-devicons',
   },
 }

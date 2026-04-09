@@ -24,6 +24,7 @@ return {
         window = {
           layout = 'vertical',
           position = 'right',
+          width = 60,
         },
       },
     },

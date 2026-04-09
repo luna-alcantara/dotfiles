@@ -11,6 +11,10 @@ return {
         html = { 'prettier' },
         csproj = { 'xmlformat' },
         xml = { 'xmlformat' },
+        json = { 'prettier' },
+        jsonc = { 'prettier' },
+        yaml = { 'prettier' },
+        yml = { 'prettier' },
       },
       formatters = {
         xmlformat = {

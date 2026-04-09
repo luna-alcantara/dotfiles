@@ -13,26 +13,31 @@ return {
           package_uninstalled = '✗',
         },
       },
+      ensure_installed = {
+        'lua-language-server',
+        'roslyn',
+
+        -- formatter
+        'stylua',
+        'csharpier',
+        'prettier',
+
+        -- linter
+        'ruff',
+        'cfn-lint', -- aws cloudformation
+
+        -- dap
+        'netcoredbg',
+        'debugpy',
+      },
     },
   },
   {
     'mason-org/mason-lspconfig.nvim',
     opts = {
       ensure_installed = {
-        --'json-lsp',
-        --'yaml-language-server',
-        --'markdown-oxide',
-
         'lua_ls',
-        'stylua',
-        --'lua-language-server',
-
         'basedpyright',
-        --'debugpy',
-
-        --'csharpier',
-        --'roslyn',
-        --'netcoredbg',
       },
     },
     dependencies = {
@@ -45,7 +50,6 @@ return {
     dependencies = { 'hrsh7th/cmp-nvim-lsp' },
     config = function()
       local capabilities = require('cmp_nvim_lsp').default_capabilities()
-      local util = require('lspconfig.util')
 
       -- Lua
       vim.lsp.config('lua_ls', {
