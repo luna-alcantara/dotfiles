@@ -23,54 +23,81 @@ return {
         return vim.fn.getcwd()
       end
 
+      local function set_project_dir(project_root)
+        local ok, err = pcall(vim.api.nvim_set_current_dir, project_root)
+        if not ok then
+          vim.notify('Failed to set working directory: ' .. tostring(err), vim.log.levels.ERROR)
+          return false
+        end
+        return true
+      end
+
+      local function run_dotnet_build(project_root)
+        local output = vim.fn.system({ 'dotnet', 'build', project_root })
+        if vim.v.shell_error ~= 0 then
+          vim.notify('dotnet build failed:\n' .. output, vim.log.levels.ERROR)
+          return false
+        end
+        return true
+      end
+
       local function find_lambda_handlers()
         local handlers = {}
         local project_root = get_project_root()
 
-        local handle = io.popen('find ' .. project_root .. ' -name "aws-lambda-tools-defaults.json" -type f 2>/dev/null')
-        if handle then
-          for line in handle:lines() do
-            local file = io.open(line, 'r')
-            if file then
-              local content = file:read('*all')
-              file:close()
-              local handler = content:match('"function%-handler"%s*:%s*"([^"]+)"')
-              if handler then
-                table.insert(handlers, handler)
-              end
+        local defaults_files = vim.fs.find('aws-lambda-tools-defaults.json', {
+          path = project_root,
+          type = 'file',
+          limit = math.huge,
+        })
+
+        for _, file_path in ipairs(defaults_files) do
+          local file = io.open(file_path, 'r')
+          if file then
+            local content = file:read('*all')
+            file:close()
+            local handler = content:match('"function%-handler"%s*:%s*"([^"]+)"')
+            if handler then
+              table.insert(handlers, handler)
             end
           end
-          handle:close()
         end
         return handlers
       end
 
       local function find_lambda_config_files()
-        local files = {}
         local project_root = get_project_root()
-        local handle = io.popen('find ' .. project_root .. ' -name "*.json" -type f 2>/dev/null | grep -v bin | grep -v obj')
-        if handle then
-          for line in handle:lines() do
-            if line and line ~= '' then
-              table.insert(files, line)
-            end
-          end
-          handle:close()
-        end
+
+        local files = vim.fs.find(function(name, path)
+          return name:sub(-5) == '.json' and not path:match('/bin/') and not path:match('/obj/')
+        end, {
+          path = project_root,
+          type = 'file',
+          limit = math.huge,
+        })
+
+        table.sort(files)
         return files
       end
 
       local function get_aws_profiles()
         local profiles = {}
-        local handle = io.popen('aws configure list-profiles 2>/dev/null')
-        if handle then
-          for line in handle:lines() do
-            if line and line ~= '' then
-              table.insert(profiles, line)
-            end
-          end
-          handle:close()
+
+        if vim.fn.executable('aws') ~= 1 then
+          return profiles
         end
+
+        local result = vim.system({ 'aws', 'configure', 'list-profiles' }, { text = true }):wait()
+        if result.code ~= 0 then
+          return profiles
+        end
+
+        for line in (result.stdout or ''):gmatch('[^\r\n]+') do
+          if line ~= '' then
+            table.insert(profiles, line)
+          end
+        end
+
         return profiles
       end
 
@@ -83,8 +110,13 @@ return {
         local function start_debug(handler, payload, config_file, profile)
           vim.g.selected_lambda_handler = handler
 
-          vim.cmd('cd ' .. project_root)
-          vim.cmd('!dotnet build ' .. project_root .. ' 2>&1')
+          if not set_project_dir(project_root) then
+            return
+          end
+
+          if not run_dotnet_build(project_root) then
+            return
+          end
 
           local no_ui = (payload and payload ~= '') or (config_file and config_file ~= '')
           local args = { '--port', '5050', '--handler', handler or '' }
@@ -165,8 +197,15 @@ return {
 
       local function run_console_debugger()
         local project_root = get_project_root()
-        vim.cmd('cd ' .. project_root)
-        vim.cmd('!dotnet build ' .. project_root .. ' 2>&1')
+
+        if not set_project_dir(project_root) then
+          return
+        end
+
+        if not run_dotnet_build(project_root) then
+          return
+        end
+
         vim.defer_fn(function()
           require('dap').run(dap.configurations.cs[1])
         end, 500)
@@ -274,7 +313,7 @@ return {
       map('n', '<F8>', function()
         dap.step_out()
       end, opts)
-      map('n', '<leader>dr', function()
+      map('n', '<leader>dR', function()
         dap.repl.open()
       end, opts)
       map('n', '<leader>dl', function()

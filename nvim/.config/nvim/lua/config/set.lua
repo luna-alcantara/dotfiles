@@ -15,7 +15,9 @@ vim.opt.incsearch = true
 
 vim.opt.termguicolors = true
 
-vim.o.shell = '/bin/zsh'
+if vim.fn.executable('zsh') == 1 then
+  vim.o.shell = vim.fn.exepath('zsh')
+end
 
 -- Deal with windows repos
 local windows_repos = {

@@ -32,6 +32,9 @@ map('n', '<leader>bo', function()
   end
 end, { desc = 'Delete other buffers' })
 
+-- Reload buffer
+vim.keymap.set('n', '<leader>r', ':e!<CR>')
+
 -- Splits
 
 -- Create/close splits

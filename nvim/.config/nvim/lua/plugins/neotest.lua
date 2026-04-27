@@ -24,17 +24,13 @@ return {
       end
 
       local map = vim.keymap.set
-      local opts = { noremap = true, silent = true }
-
-      map('n', '<F5>', function() neotest.run.run() end, opts)
-      map('n', '<F6>', debug_nearest, opts)
-      map('n', '<F7>', function() neotest.run.stop() end, opts)
-      map('n', '<leader>dt', debug_nearest, { desc = 'Debug nearest test' })
-      map('n', '<leader>dr', function() neotest.run.run() end, { desc = 'Run test' })
-      map('n', '<leader>da', function() neotest.run.run({ suite = true }) end, { desc = 'Run all tests' })
-      map('n', '<leader>ds', function() neotest.summary.toggle() end, { desc = 'Toggle summary' })
-      map('n', '<leader>do', function() neotest.output.open({ enter = true }) end, { desc = 'Open output' })
-      map('n', '<leader>dp', function() neotest.output_panel.toggle() end, { desc = 'Toggle output panel' })
+      map('n', '<leader>tn', function() neotest.run.run() end, { desc = 'Run nearest test' })
+      map('n', '<leader>td', debug_nearest, { desc = 'Debug nearest test' })
+      map('n', '<leader>ta', function() neotest.run.run({ suite = true }) end, { desc = 'Run all tests' })
+      map('n', '<leader>ts', function() neotest.run.stop() end, { desc = 'Stop test run' })
+      map('n', '<leader>tu', function() neotest.summary.toggle() end, { desc = 'Toggle test summary' })
+      map('n', '<leader>to', function() neotest.output.open({ enter = true }) end, { desc = 'Open test output' })
+      map('n', '<leader>tp', function() neotest.output_panel.toggle() end, { desc = 'Toggle test output panel' })
     end,
   },
 }

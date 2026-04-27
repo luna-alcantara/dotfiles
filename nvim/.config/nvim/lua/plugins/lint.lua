@@ -10,7 +10,7 @@ return {
         python = { 'ruff' },
       }
 
-      local augroup = vim.api.nvim_create_augroup('LintGroup', { clear = false })
+      local augroup = vim.api.nvim_create_augroup('LintGroup', { clear = true })
 
       local function is_cloudformation()
         local lines = vim.api.nvim_buf_get_lines(0, 0, 50, false)
