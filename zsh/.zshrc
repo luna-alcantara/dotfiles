@@ -10,6 +10,9 @@ export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.dotnet/tools:$PATH"
 export PATH="$HOME/.opencode/bin:$PATH"
 
+# WSL
+#export BROWSER=explorer.exe
+
 # ----- History -----
 HISTFILE="$HOME/.zsh_history"
 HISTSIZE=10000
@@ -32,7 +35,6 @@ bindkey -e
 bindkey '^R' history-incremental-search-backward
 
 # ----- Aliases -----
-alias cz=chezmoi
 
 # Config shortcuts
 alias zshs='source ~/.zshrc'
@@ -47,7 +49,6 @@ alias stow-dev='cd ~/.dotfiles/dev/'
 
 eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"
-
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
