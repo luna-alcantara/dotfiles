@@ -16,6 +16,7 @@ return {
       ensure_installed = {
         'lua-language-server',
         'roslyn',
+        'marksman',
 
         -- formatter
         'stylua',
@@ -25,6 +26,7 @@ return {
         -- linter
         'ruff',
         'cfn-lint', -- aws cloudformation
+        'markdownlint',
 
         -- dap
         'netcoredbg',

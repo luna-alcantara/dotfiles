@@ -6,7 +6,6 @@ return {
 
       lint.linters_by_ft = {
         json = { 'prettier' },
-        yaml = { 'prettier' },
         python = { 'ruff' },
       }
 

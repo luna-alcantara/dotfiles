@@ -17,6 +17,9 @@ return {
         sharing = 'acp',
       },
     },
+    selection = {
+      hint_display = 'none',
+    },
   },
   dependencies = {
     'nvim-lua/plenary.nvim',
