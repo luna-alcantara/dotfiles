@@ -3,16 +3,20 @@
 export EDITOR=nvim
 export VISUAL=nvim
 export PAGER=less
-export BROWSER=firefox
 
 # Paths
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="/snap/bin/:$PATH"
+
+# Linux
+export BROWSER=firefox
 export PATH="$HOME/.dotnet/tools:$PATH"
 export PATH="$HOME/.opencode/bin:$PATH"
 
 # WSL
 #export BROWSER=explorer.exe
+#export DOTNET_ROOT=$HOME/.dotnet
+#export PATH=$PATH:$DOTNET_ROOT:$DOTNET_ROOT/tools
 
 # ----- History -----
 HISTFILE="$HOME/.zsh_history"
