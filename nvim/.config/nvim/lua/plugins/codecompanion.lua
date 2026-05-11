@@ -48,13 +48,13 @@ return {
     },
     strategies = {
       chat = {
-        adapter = 'opencode',
+        adapter = vim.env.NVIM_LLM_PROVIDER or 'opencode',
       },
       inline = {
-        adapter = 'opencode',
+        adapter = vim.env.NVIM_LLM_PROVIDER or 'opencode',
       },
       agent = {
-        adapter = 'opencode',
+        adapter = vim.env.NVIM_LLM_PROVIDER or 'opencode',
       },
     },
   },

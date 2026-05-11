@@ -4,7 +4,7 @@ return {
   lazy = false,
   version = false,
   opts = {
-    provider = 'opencode',
+    provider = vim.env.NVIM_LLM_PROVIDER or 'opencode',
     providers = {
       opencode = {
         name = 'opencode',

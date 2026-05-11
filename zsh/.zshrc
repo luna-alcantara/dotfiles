@@ -1,3 +1,14 @@
+# Linux
+export BROWSER=firefox
+export PATH="$HOME/.dotnet/tools:$PATH"
+export PATH="$HOME/.opencode/bin:$PATH"
+export NVIM_LLM_PROVIDER=opencode
+
+# WSL
+#export BROWSER=explorer.exe
+#export DOTNET_ROOT=$HOME/.dotnet
+#export PATH=$PATH:$DOTNET_ROOT:$DOTNET_ROOT/tools
+#export NVIM_LLM_PROVIDER=kiro
 
 # ----- Environment -----
 export EDITOR=nvim
@@ -7,16 +18,6 @@ export PAGER=less
 # Paths
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="/snap/bin/:$PATH"
-
-# Linux
-export BROWSER=firefox
-export PATH="$HOME/.dotnet/tools:$PATH"
-export PATH="$HOME/.opencode/bin:$PATH"
-
-# WSL
-#export BROWSER=explorer.exe
-#export DOTNET_ROOT=$HOME/.dotnet
-#export PATH=$PATH:$DOTNET_ROOT:$DOTNET_ROOT/tools
 
 # ----- History -----
 HISTFILE="$HOME/.zsh_history"

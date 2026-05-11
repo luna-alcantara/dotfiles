@@ -104,6 +104,10 @@ return {
 
           vim.keymap.set('n', '<leader>xd', vim.diagnostic.open_float, opts)
           vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, opts)
+
+          vim.keymap.set('n', '<leader>lr', function()
+            vim.cmd.lsp('restart', 'roslyn')
+          end, vim.tbl_extend('force', opts, { desc = 'Restart Roslyn LSP' }))
         end,
       })
     end,
