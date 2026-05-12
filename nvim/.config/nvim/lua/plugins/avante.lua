@@ -5,16 +5,14 @@ return {
   version = false,
   opts = {
     provider = vim.env.NVIM_LLM_PROVIDER or 'opencode',
-    providers = {
+    acp_providers = {
       opencode = {
-        name = 'opencode',
-        module = 'avante.providers.opencode',
-        sharing = 'acp',
+        command = 'opencode',
+        args = { 'acp' },
       },
       kiro = {
-        name = 'kiro-cli',
-        module = 'avante.providers.kiro',
-        sharing = 'acp',
+        command = 'kiro-cli',
+        args = { 'acp' },
       },
     },
     selection = {
