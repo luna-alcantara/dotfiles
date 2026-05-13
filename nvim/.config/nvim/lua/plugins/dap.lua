@@ -34,24 +34,23 @@ return {
         },
       }
 
-      local map = vim.keymap.set
-      local opts = { noremap = true, silent = true }
+      local function m(mode, lhs, rhs, desc)
+        vim.keymap.set(mode, lhs, rhs, { noremap = true, silent = true, desc = desc })
+      end
 
-      map('n', '<F5>', "<Cmd>lua require'dap'.continue()<CR>", opts)
-      map('n', '<F6>', "<Cmd>lua require('neotest').run.run({strategy = 'dap'})<CR>", opts)
-      map('n', '<F9>', "<Cmd>lua require'dap'.toggle_breakpoint()<CR>", opts)
-      map('n', '<F10>', "<Cmd>lua require'dap'.step_over()<CR>", opts)
-      map('n', '<F11>', "<Cmd>lua require'dap'.step_into()<CR>", opts)
-      map('n', '<F8>', "<Cmd>lua require'dap'.step_out()<CR>", opts)
-      -- map('n', '<F12>', "<Cmd>lua require'dap'.step_out()<CR>", opts)
-      map('n', '<leader>dr', "<Cmd>lua require'dap'.repl.open()<CR>", opts)
-      map('n', '<leader>dl', "<Cmd>lua require'dap'.run_last()<CR>", opts)
-      map(
-        'n',
-        '<leader>dt',
-        "<Cmd>lua require('neotest').run.run({strategy = 'dap'})<CR>",
-        { noremap = true, silent = true, desc = 'debug nearest test' }
-      )
+      m('n', '<F5>', "<Cmd>lua require'dap'.continue()<CR>", 'start or continue debugging')
+      m('n', '<S-F5>', "<Cmd>lua require'dap'.terminate()<CR>", 'stop debugging')
+      m('n', '<F9>', "<Cmd>lua require'dap'.toggle_breakpoint()<CR>", 'toggle breakpoint')
+      m('n', '<S-F9>', function()
+        dap.set_breakpoint(vim.fn.input('Breakpoint condition: '))
+      end, 'set conditional breakpoint')
+      m('n', '<F10>', "<Cmd>lua require'dap'.step_over()<CR>", 'step over')
+      m('n', '<F11>', "<Cmd>lua require'dap'.step_into()<CR>", 'step into')
+      m('n', '<S-F11>', "<Cmd>lua require'dap'.step_out()<CR>", 'step out')
+
+      m('n', '<leader>dr', "<Cmd>lua require'dap'.repl.open()<CR>", 'open debug REPL')
+      m('n', '<leader>dl', "<Cmd>lua require'dap'.run_last()<CR>", 'run last debug configuration')
+      m('n', '<leader>dC', "<Cmd>lua require'dap'.clear_breakpoints()<CR>", 'clear all breakpoints')
     end,
   },
 }
