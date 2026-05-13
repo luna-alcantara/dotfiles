@@ -21,7 +21,9 @@ return {
         -- formatter
         'stylua',
         'csharpier',
+        'xmlformat',
         'prettier',
+        'ruff_format',
 
         -- linter
         'ruff',

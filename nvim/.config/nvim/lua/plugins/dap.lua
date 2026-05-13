@@ -8,18 +8,22 @@ return {
     config = function()
       local dap = require('dap')
 
-      local mason_path = vim.fn.stdpath('data') .. '/mason/packages/netcoredbg/netcoredbg'
-
       local netcoredbg_adapter = {
         type = 'executable',
-        command = mason_path,
+        command = vim.fn.stdpath('data') .. '/mason/packages/netcoredbg/netcoredbg',
         args = { '--interpreter=vscode' },
       }
 
-      dap.adapters.netcoredbg = netcoredbg_adapter -- needed for normal debugging
-      dap.adapters.coreclr = netcoredbg_adapter -- needed for unit test debugging
+      dap.adapters.coreclr = netcoredbg_adapter
+      dap.adapters.netcoredbg = netcoredbg_adapter
 
       dap.configurations.cs = {
+        {
+          type = 'coreclr',
+          name = 'Attach to Lambda Test Tool',
+          request = 'attach',
+          processId = require('dap.utils').pick_process,
+        },
         {
           type = 'coreclr',
           name = 'launch - netcoredbg',
@@ -27,26 +31,6 @@ return {
           program = function()
             return require('dap-dll-autopicker').build_dll_path()
           end,
-          -- justMyCode = false,
-          -- stopAtEntry = false,
-          -- -- program = function()
-          -- --   -- todo: request input from ui
-          -- --   return "/path/to/your.dll"
-          -- -- end,
-          -- env = {
-          --   ASPNETCORE_ENVIRONMENT = function()
-          --     -- todo: request input from ui
-          --     return 'Development'
-          --   end,
-          --   ASPNETCORE_URLS = function()
-          --     -- todo: request input from ui
-          --     return 'http://localhost:5050'
-          --   end,
-          -- },
-          -- cwd = function()
-          --   -- todo: request input from ui
-          --   return vim.fn.getcwd()
-          -- end,
         },
       }
 
