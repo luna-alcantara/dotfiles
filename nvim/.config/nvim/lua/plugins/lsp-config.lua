@@ -13,6 +13,11 @@ return {
           package_uninstalled = '✗',
         },
       },
+    },
+  },
+  {
+    'WhoIsSethDaniel/mason-tool-installer.nvim',
+    opts = {
       ensure_installed = {
         'lua-language-server',
         'roslyn',
@@ -21,9 +26,8 @@ return {
         -- formatter
         'stylua',
         'csharpier',
-        'xmlformat',
+        'xmlformatter',
         'prettier',
-        'ruff_format',
 
         -- linter
         'ruff',

@@ -7,6 +7,7 @@ return {
       lint.linters_by_ft = {
         json = { 'prettier' },
         python = { 'ruff' },
+        markdown = { 'markdownlint' },
       }
 
       local augroup = vim.api.nvim_create_augroup('LintGroup', { clear = true })
@@ -37,11 +38,11 @@ return {
 
       vim.api.nvim_create_autocmd({ 'BufWritePost', 'BufEnter' }, {
         group = augroup,
-        pattern = { '*.py' },
+        pattern = { '*.py', '*.md' },
         callback = function()
           lint.try_lint()
         end,
-        desc = 'Run ruff via nvim-lint when saving Python files',
+        desc = 'Run linter on save for Python and Markdown files',
       })
 
       local function show_lint_diagnostics()

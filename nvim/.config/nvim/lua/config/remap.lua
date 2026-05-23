@@ -1,5 +1,3 @@
--- Set <space> as the leader key
-
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
@@ -43,6 +41,7 @@ map('n', '<leader>ws', '<cmd>split<CR>', { desc = 'Horizontal split' })
 map('n', '<leader>wc', '<cmd>close<CR>', { desc = 'Close split' })
 map('n', '<leader>wo', '<cmd>only<CR>', { desc = 'Only this split' })
 map('n', '<leader>we', '<C-w>=', { desc = 'Equalize splits' })
+
 -- Resize splits (Alt + hjkl)
 map('n', '<A-h>', '<cmd>vertical resize -2<CR>', { desc = 'Narrower' })
 map('n', '<A-l>', '<cmd>vertical resize +2<CR>', { desc = 'Wider' })
