@@ -53,9 +53,13 @@ mkdir -p ~/.local/state/zsh   # history
 mkdir -p ~/.cache/zsh         # completion cache
 ```
 
-Start a new shell
+Test it
 
-Plugins are installed automatically on first launch via the built-in plugin manager.
+```bash
+source /etc/zsh/zshenv
+echo $XDG_CONFIG_HOME
+echo $ZDOTDIR
+```
 
 ## Plugins
 
