@@ -43,6 +43,7 @@ bindkey '^R' history-incremental-search-backward
 # ----- Aliases -----
 
 # Config shortcuts
+alias cls='clear'
 alias zshs='source ~/.zshrc'
 alias zshc='nvim ~/.zshrc'
 
