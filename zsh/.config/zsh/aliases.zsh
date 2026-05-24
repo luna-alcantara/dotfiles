@@ -1,2 +1,2 @@
 alias zshs='~/.config/zsh/.zshrc'
-alias cls='clear'
+alias c='clear'
