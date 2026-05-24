@@ -1,5 +1,11 @@
 # .dotfiles
 
+## stow
+
+```bash
+stow -t ~ tmux
+```
+
 ## zsh
 
 ## Dependencies
