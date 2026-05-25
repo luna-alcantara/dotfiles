@@ -34,6 +34,6 @@ export PATH="$HOME/.opencode/bin:$PATH"
 
 # WSL
 #export BROWSER=wslview 
-#export PATH="/snap/bin/:$PATH"
+export PATH="/snap/bin:$PATH"
 #export DOTNET_ROOT=$HOME/.dotnet
 #export PATH=$PATH:$DOTNET_ROOT:$DOTNET_ROOT/tools
