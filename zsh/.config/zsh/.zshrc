@@ -83,7 +83,7 @@ source "$ZDOTDIR/plugins.zsh"
 source "$ZDOTDIR/prompt.zsh"
 
 # Work-specific config (optional, no error if missing)
-[[ -f "$ZDOTDIR/work.zsh"]] && source "$ZDOTDIR/work.zsh"
+[[ -f "$ZDOTDIR/work.zsh" ]] && source "$ZDOTDIR/work.zsh"
 
 # =========================================================
 # Node / NVM
