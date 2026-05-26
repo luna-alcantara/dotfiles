@@ -63,13 +63,6 @@ if [[ -f /usr/share/fzf/key-bindings.zsh ]]; then
   source /usr/share/fzf/completion.zsh
 fi
 
-# Ubuntu
-#if [[ -f /usr/share/doc/fzf/examples/key-bindings.zsh ]]; then
-#  source /usr/share/doc/fzf/examples/key-bindings.zsh
-#  source /usr/share/doc/fzf/examples/completion.zsh
-#fi
-
-
 # =========================================================
 # Modular Config Files
 # =========================================================
@@ -89,6 +82,8 @@ source "$ZDOTDIR/plugins.zsh"
 # Prompt/theme
 source "$ZDOTDIR/prompt.zsh"
 
+# Work-specific config (optional, no error if missing)
+[[ -f "$ZDOTDIR/work.zsh]] && source "$ZDOTDIR/work.zsh"
 
 # =========================================================
 # Node / NVM
