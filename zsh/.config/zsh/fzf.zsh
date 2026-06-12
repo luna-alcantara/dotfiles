@@ -29,3 +29,21 @@ _fzf_file_no_hidden() {
   zle reset-prompt
 }
 zle -N _fzf_file_no_hidden
+
+# Ctrl+B: buku bookmark picker - search and open in browser
+_buku_fzf() {
+  local result
+  result=$(
+    buku --nostdin -p --format 40 \
+    | awk -F'\t' '{ printf "%s | %s | %s\n", $2, $3, $1 }' \
+    | fzf --prompt="buku> "
+  )
+  if [[ -n "$result" ]]; then
+    local url
+    local tmp="${result#* | }"   # strip "title | "
+    url="${tmp#* | }"            # strip "tags | "
+    xdg-open "$url"
+  fi
+  zle reset-prompt
+}
+zle -N _buku_fzf

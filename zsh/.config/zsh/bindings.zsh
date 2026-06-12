@@ -27,6 +27,9 @@ zvm_after_init() {
   # Ctrl+\ -> toggle autosuggestions (useful for screen recordings)
   bindkey '^\' autosuggest-toggle
 
+  # Ctrl+B -> buku bookmark picker
+  bindkey '^B' _buku_fzf
+
   # Up/Down -> history search by substring (^[[A/^[[B are up/down arrow escape codes)
   bindkey '^[[A' history-substring-search-up
   bindkey '^[[B' history-substring-search-down
