@@ -30,20 +30,18 @@ _fzf_file_no_hidden() {
 }
 zle -N _fzf_file_no_hidden
 
-# Ctrl+B: buku bookmark picker - search and open in browser
-_buku_fzf() {
+# Ctrl+B: bookmark picker - search bookmarks.yml and open in browser
+_bookmark_fzf() {
   local result
   result=$(
-    buku --nostdin -p --format 40 \
-    | awk -F'\t' '{ printf "%s | %s | %s\n", $2, $3, $1 }' \
-    | fzf --prompt="buku> "
+    yq -r '.[] | [.name, (.tags // [] | join(",")), .url] | @tsv' ~/.config/bookmarks.yml \
+    | awk -F'\t' '{ printf "%s | %s | %s\n", $1, $2, $3 }' \
+    | fzf --prompt="bookmark> "
   )
   if [[ -n "$result" ]]; then
-    local url
-    local tmp="${result#* | }"   # strip "title | "
-    url="${tmp#* | }"            # strip "tags | "
-    xdg-open "$url"
+    local url="${result##* | }"
+    (    (xdg-open "$url" &>/dev/null &) &>/dev/null &)
   fi
   zle reset-prompt
 }
-zle -N _buku_fzf
+zle -N _bookmark_fzf

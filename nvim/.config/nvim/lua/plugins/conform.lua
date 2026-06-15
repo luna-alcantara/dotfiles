@@ -15,7 +15,6 @@ return {
         jsonc = { 'prettier' },
         yaml = { 'prettier' },
         yml = { 'prettier' },
-        markdown = { 'prettier' },
       },
       formatters = {
         xmlformat = {

@@ -4,6 +4,8 @@ return {
     config = function()
       local lint = require('lint')
 
+      lint.linters.markdownlint.args = { '--disable', 'MD013' }
+
       lint.linters_by_ft = {
         json = { 'prettier' },
         python = { 'ruff' },
