@@ -82,8 +82,8 @@ source "$ZDOTDIR/plugins.zsh"
 # Prompt/theme
 source "$ZDOTDIR/prompt.zsh"
 
-# Work-specific config (optional, no error if missing)
-[[ -f "$ZDOTDIR/work.zsh" ]] && source "$ZDOTDIR/work.zsh"
+# Machine-specific configs (all .zsh files in hosts/)
+for f in "$ZDOTDIR"/hosts/*.zsh(N); do source "$f"; done
 
 # =========================================================
 # Node / NVM

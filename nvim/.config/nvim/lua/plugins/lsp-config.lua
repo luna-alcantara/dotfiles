@@ -20,7 +20,7 @@ return {
     opts = {
       ensure_installed = {
         'lua-language-server',
-        'roslyn',
+        'roslyn-language-server',
         'marksman',
 
         -- formatter
@@ -112,7 +112,7 @@ return {
           vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, opts)
 
           vim.keymap.set('n', '<leader>lr', function()
-            vim.cmd.lsp('restart', 'roslyn')
+            vim.cmd.lsp('restart', 'roslyn_ls')
           end, vim.tbl_extend('force', opts, { desc = 'Restart Roslyn LSP' }))
         end,
       })
