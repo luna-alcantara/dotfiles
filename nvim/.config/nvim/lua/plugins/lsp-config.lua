@@ -33,6 +33,8 @@ return {
         'ruff',
         'cfn-lint', -- aws cloudformation
         'markdownlint',
+        'yamllint',
+        'jsonlint',
 
         -- dap
         'netcoredbg',

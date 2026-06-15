@@ -7,7 +7,7 @@ return {
       lint.linters.markdownlint.args = { '--disable', 'MD013' }
 
       lint.linters_by_ft = {
-        json = { 'prettier' },
+        json = { 'jsonlint' },
         python = { 'ruff' },
         markdown = { 'markdownlint' },
       }
@@ -31,7 +31,7 @@ return {
           if is_cloudformation() then
             require('lint').linters_by_ft.yaml = { 'cfn_lint' }
           else
-            require('lint').linters_by_ft.yaml = { 'prettier' }
+            require('lint').linters_by_ft.yaml = { 'yamllint' }
           end
           lint.try_lint()
         end,
