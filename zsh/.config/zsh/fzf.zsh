@@ -40,7 +40,7 @@ _bookmark_fzf() {
   )
   if [[ -n "$result" ]]; then
     local url="${result##* | }"
-    ("${BROWSER:-xdg-open}" "$url" &>/dev/null &) &>/dev/null &
+    ${=BROWSER:-xdg-open} "$url" &>/dev/null &!
   fi
   zle reset-prompt
 }
