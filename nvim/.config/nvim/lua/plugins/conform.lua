@@ -15,6 +15,7 @@ return {
         jsonc = { 'prettier' },
         yaml = { 'prettier' },
         yml = { 'prettier' },
+        sql = { 'sqlfluff' },
       },
       formatters = {
         xmlformat = {

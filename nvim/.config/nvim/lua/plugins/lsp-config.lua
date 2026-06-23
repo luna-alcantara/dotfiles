@@ -35,6 +35,7 @@ return {
         'markdownlint',
         'yamllint',
         'jsonlint',
+        'sqlfluff',
 
         -- dap
         'netcoredbg',

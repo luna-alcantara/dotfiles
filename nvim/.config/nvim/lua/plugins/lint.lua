@@ -10,6 +10,7 @@ return {
         json = { 'jsonlint' },
         python = { 'ruff' },
         markdown = { 'markdownlint' },
+        sql = { 'sqlfluff' },
       }
 
       local augroup = vim.api.nvim_create_augroup('LintGroup', { clear = true })
@@ -40,7 +41,7 @@ return {
 
       vim.api.nvim_create_autocmd({ 'BufWritePost', 'BufEnter' }, {
         group = augroup,
-        pattern = { '*.py', '*.md' },
+        pattern = { '*.py', '*.md', '*.sql' },
         callback = function()
           lint.try_lint()
         end,
