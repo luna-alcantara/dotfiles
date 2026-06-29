@@ -34,6 +34,9 @@ setopt NUMERIC_GLOB_SORT  # sort file10 after file9, not after file1
 # Initialize zoxide
 eval "$(zoxide init zsh)"
 
+# Initialize navi widget
+eval "$(navi widget zsh)"
+
 
 # =========================================================
 # Completion

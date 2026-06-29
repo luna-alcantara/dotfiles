@@ -30,6 +30,9 @@ zvm_after_init() {
   # Ctrl+B -> bookmark picker
   bindkey '^B' _bookmark_fzf
 
+  # Ctrl+G -> navi cheatsheet
+  bindkey '^G' _navi
+
   # Up/Down -> history search by substring (^[[A/^[[B are up/down arrow escape codes)
   bindkey '^[[A' history-substring-search-up
   bindkey '^[[B' history-substring-search-down
