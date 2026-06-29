@@ -26,9 +26,11 @@ export GPG_TTY=$(tty)
 
 # ---------- Starship ----------
 export STARSHIP_CONFIG="$ZDOTDIR/starship.toml"
+export NAVI_PATH="$HOME/.local/share/navi/cheats"
 
 # ---------- PATH ----------
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.dotnet/tools:$PATH"
 export PATH="$HOME/.opencode/bin:$PATH"
+export PATH="$HOME/.cargo/bin:$PATH"
 
