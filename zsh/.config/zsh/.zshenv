@@ -32,6 +32,10 @@ export NAVI_PATH="$HOME/.local/share/navi/cheats"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.dotnet/tools:$PATH"
 export PATH="$HOME/.opencode/bin:$PATH"
-export PATH="$HOME/.cargo/bin:$PATH"
+if [[ -d "$HOME/.cargo/bin" ]]; then
+  export PATH="$HOME/.cargo/bin:$PATH"
+fi
 
-. "$HOME/.cargo/env"
+if [[ -f "$HOME/.cargo/env" ]]; then
+  . "$HOME/.cargo/env"
+fi
