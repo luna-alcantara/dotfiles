@@ -16,7 +16,7 @@ ZVM_VI_HIGHLIGHT_EXTRASTYLE=none
 _lazygit() { zle -R; lazygit; zle reset-prompt }
 zle -N _lazygit
 
-_gh_dash() { zle -R; gh-dash; zle reset-prompt }
+_gh_dash() { zle -R; gh dash; zle reset-prompt }
 zle -N _gh_dash
 
 _lazydocker() { zle -R; lazydocker; zle reset-prompt }
