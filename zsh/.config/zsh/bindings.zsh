@@ -12,6 +12,16 @@ ZVM_VI_HIGHLIGHT_BACKGROUND=none
 ZVM_VI_HIGHLIGHT_FOREGROUND=none
 ZVM_VI_HIGHLIGHT_EXTRASTYLE=none
 
+# Widget wrappers for TUI apps (bindkey needs zle widgets, not raw commands)
+_lazygit() { zle -R; lazygit; zle reset-prompt }
+zle -N _lazygit
+
+_gh_dash() { zle -R; gh-dash; zle reset-prompt }
+zle -N _gh_dash
+
+_lazydocker() { zle -R; lazydocker; zle reset-prompt }
+zle -N _lazydocker
+
 # zsh-vi-mode resets all bindings on init, so custom bindings
 # must be registered via this hook to survive.
 zvm_after_init() {
@@ -30,8 +40,17 @@ zvm_after_init() {
   # Ctrl+B -> bookmark picker
   bindkey '^B' _bookmark_fzf
 
-  # Ctrl+G -> navi cheatsheet
-  bindkey '^G' _navi_widget
+  # Alt+N -> navi cheatsheet
+  bindkey '^[n' _navi_widget
+
+  # Ctrl+G -> lazygit
+  bindkey '^G' _lazygit
+
+  # Alt+D -> gh-dash
+  bindkey '^[d' _gh_dash
+
+  # Alt+C -> lazydocker
+  bindkey '^[c' _lazydocker
 
   # Up/Down -> history search by substring (^[[A/^[[B are up/down arrow escape codes)
   bindkey '^[[A' history-substring-search-up
