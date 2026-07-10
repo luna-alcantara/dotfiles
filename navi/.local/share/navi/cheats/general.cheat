@@ -1,0 +1,13 @@
+% dotfiles, stow
+
+# Stow a package to home
+stow -t ~ <package>
+
+# Unstow a package
+stow -D <package>
+
+# Create a symlink
+ln -s <target> <link_name>
+
+# Remove a symlink
+unlink <link_name>
